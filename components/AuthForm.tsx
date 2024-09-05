@@ -22,6 +22,7 @@ import { authFormSchema } from '@/lib/utils'
 import { Loader2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { getLoggedInUser, signIn, signUp } from '@/lib/actions/user.actions'
+import PlaidLink from './PlaidLink'
 
 
     const AuthForm = ({type}:{type:string}) => {
@@ -45,10 +46,25 @@ import { getLoggedInUser, signIn, signUp } from '@/lib/actions/user.actions'
         const onSubmit= async (data: z.infer<typeof formSchema>) => {
             setIsLoading(true)
             try{
+
                 // Sign up with Appwrite and create plaid link token to start linking our bank account
                 if (type === 'sign-up') {
+                    const userData = {
+                        firstName: data.firstName!,
+                        lastName: data.lastName!,
+                        address1: data.address1!,
+                        city: data.city!,
+                        state: data.state!,
+                        postalCode: data.postalCode!,
+                        dateOfBirth: data.dateOfBirth!,
+                        ssn: data.ssn!,
+                        email: data.email,
+                        password:data.password,
+    
+                    }
+
                     //all the new user data is already available in the "data"
-                    const newUser = await signUp(data);
+                    const newUser = await signUp(userData);
                     setUser(newUser);
                 }
 
@@ -106,6 +122,7 @@ import { getLoggedInUser, signIn, signUp } from '@/lib/actions/user.actions'
             {user ?(
                 <div className='flex flex-col gap-4'>
                     {/*plaid link component to link our bank account */}
+                    <PlaidLink user={user} variant="primary"></PlaidLink>
                 </div>
             ):(
                 <>
