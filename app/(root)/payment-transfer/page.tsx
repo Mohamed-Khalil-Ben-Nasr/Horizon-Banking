@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import HeaderBox from '@/components/HeaderBox'
 import PaymentTransferForm from '@/components/PaymentTransferForm'
 import { getAccounts } from '@/lib/actions/bank.actions';
