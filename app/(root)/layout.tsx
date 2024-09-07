@@ -13,7 +13,7 @@ export default async function RootLayout({
   const loggedIn = await getLoggedInUser();
 
   //we use redirect instead of router.push because this is a server component and we want to still be that way
-  if(!loggedIn) redirect('/sign-in')
+  if(!loggedIn) redirect('/sign-in');
 
 
   return (

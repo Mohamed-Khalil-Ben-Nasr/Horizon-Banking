@@ -121,7 +121,8 @@ import PlaidLink from './PlaidLink'
             </header>
             {user ?(
                 <div className='flex flex-col gap-4'>
-                    {/*plaid link component to link our bank account */}
+                    {/*plaid link component to link our bank account 
+                    this is where the user connects and then if its successfull they are taken to home page*/}
                     <PlaidLink user={user} variant="primary"></PlaidLink>
                 </div>
             ):(
